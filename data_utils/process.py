@@ -268,9 +268,19 @@ def extract_flow(base_dir,ori_imgs_dir,mask_dir, flow_dir):
     tmp_image = cv2.imread(image_paths[0], cv2.IMREAD_UNCHANGED) # [H, W, 3]
     h, w = tmp_image.shape[:2]
     valid_img_ids = []
-    for i in range(100000):
-        if os.path.isfile(os.path.join(ori_imgs_dir, '{:d}.lms'.format(i))):
-            valid_img_ids.append(i)
+    # for i in range(100000):
+    #     if os.path.isfile(os.path.join(ori_imgs_dir, '{:d}.lms'.format(i))):
+    #         valid_img_ids.append(i)
+    
+    ''' FIXED
+    Why loop 10000, its so slow, lol
+    '''
+    for filename in os.listdir(ori_imgs_dir):
+        if filename.endswith(".lms"):
+            num = filename.split(".")[0]
+            print(num)
+            valid_img_ids.append(int(num))
+    
     valid_img_num = len(valid_img_ids)
     with open(os.path.join(base_dir, 'flow_list.txt'), 'w') as file:
         for i in range(0, valid_img_num):
