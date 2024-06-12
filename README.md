@@ -14,7 +14,7 @@
 
 ### Pre-preprocess
 
-- Run pre-preprocess:
+- Run pre-preprocess ([sourcecode]("https://github.com/AliaksandrSiarohin/first-order-model/blob/master/crop-video.py")):
 ```
 python3 data_utils/pre_preprocess.py --inp data/path/to/video.mp4 --cpu
 ```
